@@ -1,0 +1,98 @@
+html,
+		body {
+			height: 100%;
+		}
+	
+
+        #green {
+            
+            height: 100%;
+            text-align: center;
+            color: white;
+            padding: 15px;
+            background: rgb(66, 66, 66);
+            
+        }
+
+        a {
+            color: #dfe4e9;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: rgb(255, 255, 255);
+            text-decoration: none;
+           
+        }
+
+        .first-tab{
+            height: 400px;
+        }
+        
+        .second-tab{
+            height: 400px;
+        }
+        
+        .third-tab{
+            height: 400px;
+        }
+
+        .example-button-row {
+            display: table-cell;
+            max-width: 600px;
+           
+           
+
+          }
+
+          .blue-label {
+            background-color: blue;
+            color: white; 
+            padding: 5px; 
+            border-radius: 5px; 
+        }
+
+        .tab2button{
+            /* text-align: center; */
+            position: fixed;
+  bottom: 120px;
+  right: 10px;
+        }
+
+        .example-additional-selection {
+            opacity: 0.75;
+            font-size: 0.75em;
+          } 
+
+          .half-page-container {
+    
+            display: flex;
+            justify-content: center;
+        
+        }
+        
+        .half-page-card {
+            align-items: center;
+            justify-content: center;
+            width: 70%;
+        
+        }
+        
+
+       .matclass{
+        padding-left: 25px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+       }
+
+       .head1{
+        font-weight: bold;
+        color: darkgray;
+       }
+
+       .value{
+        /* font-weight: bold; */
+        color: grey;
+        margin-top: -13px;
+
+       }

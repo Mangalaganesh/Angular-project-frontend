@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- import bootstrap cdn-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <!-- import jquery cdn -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+        </script>
+    <!-- import popper.js cdn -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous">
+        </script>
+    <!-- import javascript cdn -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous">
+        </script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+</head>
+
+<body>
+
+    <!-- This container contains the sidebar
+			and main content of the page -->
+    <!-- h-100 takes the full height of the body-->
+    <div class="container-fluid h-100">
+        <div class="row h-100">
+            <div class="col-2" id="green">
+                <h4>Menu</h4>
+                <!-- Navigation links in sidebar-->
+                <a href="/form">
+                    <i class="fa-solid fa-user-plus"></i> &nbsp;
+                    <span class="text">Add Student</span>
+                </a>
+                <!-- <a href="#">Add Student</a> -->
+                <br />
+                <br />
+                <a href="/viewstudent">
+                    <i class="fas fa-list"></i> &nbsp;
+                    <span class="text">View Students</span>
+                </a>
+
+
+
+            </div>
+
+
+
+
+
+            <!--Contains the main content
+					of the webpage-->
+            <div class="col-10" style="padding: 0;">
+
+                <!-- top navbar -->
+                <nav class="navbar navbar-expand-lg
+    navbar-light bg-primary">
+
+                    <a class="navbar-brand" href="/">
+                        <img src="../../assets/images/kgisl-logo.png" height="45" alt="MDB Logo" loading="lazy" />
+                    </a>
+
+
+
+                    <!-- navbar links -->
+                    <!-- <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+        <a class="nav-item nav-link
+            active" href="#">
+        Home
+        </a>
+        <a class="nav-item nav-link" href="#">Features</a>
+        <a class="nav-item nav-link" href="#">Price</a>
+        <a class="nav-item nav-link" href="#">About</a>
+    </div>
+</div> -->
+                </nav>
+                <div class="container">
+                    <mat-tab-group [selectedIndex]="selectedTabIndex">
+                        <mat-tab label="Personal details">
+                            <div class="first-tab">
+                                <form [formGroup]="myForm"  >
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <mat-form-field>
+                                                <mat-label>First Name</mat-label>
+                                                <input matInput formControlName="firstName" >
+                                            </mat-form-field>&nbsp;
+
+                                            <mat-form-field>
+                                                <mat-label>Last Name</mat-label>
+                                                <input matInput formControlName="lastName" >
+                                            </mat-form-field>
+
+                                            <mat-form-field>
+                                                <mat-label>Phone Number</mat-label>
+                                                <input matInput formControlName="phone" >
+                                            </mat-form-field>&nbsp;
+
+                                            <br><br>
+
+                                            &nbsp;<label>Gender&nbsp;</label>
+
+                                            <mat-radio-group aria-label="Gender" formControlName="gender" >
+                                                <mat-radio-button value="Male">Male</mat-radio-button>
+                                                <mat-radio-button value="Female">Female</mat-radio-button>
+                                            </mat-radio-group>
+
+                                        </div>
+
+                                        <div class="col-md-6">
+
+                                            <mat-form-field>
+                                                <mat-label>Email</mat-label>
+                                                <input matInput formControlName="email" >
+                                            </mat-form-field>
+                                            <br>
+
+                                            <mat-form-field>
+                                                <mat-label>Choose a date</mat-label>
+                                                <input matInput [matDatepicker]="picker" formControlName="dob" >
+                                                <mat-hint>MM/DD/YYYY</mat-hint>
+                                                <mat-datepicker-toggle matIconSuffix
+                                                    [for]="picker"></mat-datepicker-toggle>
+                                                <mat-datepicker #picker></mat-datepicker>
+                                            </mat-form-field>
+                                            <br>
+                                            <br>
+
+                                            <mat-form-field>
+                                                <mat-label>Address</mat-label>
+                                                <textarea matInput formControlName="address" ></textarea>
+                                            </mat-form-field>
+
+                                            <div class="example-button-row">
+                                                <button mat-raised-button color="primary" (click)="moveToNextTab1()">Next</button>
+                                            </div>
+
+
+
+
+                                        </div>
+                                    </div>
+                                </form>
+
+                            </div>
+
+                        </mat-tab>
+
+                        <mat-tab label="Student details">
+                            <div class="second-tab">
+                                <form [formGroup]="studentdetailsForm">
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label class="blue-label">courses available </label>
+                                            <br>
+                                            &nbsp;
+
+
+
+                                            <div class="dropdown-container">
+                                                <mat-form-field>
+                                                    <mat-label>Courses available</mat-label>
+                                                    <mat-select formControlName="selectedOptions" multiple>
+                                                        <mat-option *ngFor="let option of options" [value]="option">{{
+                                                            option }}</mat-option>
+                                                    </mat-select>
+                                                </mat-form-field>
+                                            </div>
+
+
+
+                                            <!-- Add more dropdowns as needed -->
+
+                                        </div>
+
+                                        <div class="col-md-6">
+
+                                            <div class="half-page-container">
+                                                <mat-card class="half-page-card">
+                                                    <mat-card-content >
+                                                        <b> Student Details </b>
+                                                        <br>
+                                                        <ng-container *ngIf="userFormData">
+                                                            Name:&nbsp; {{ userFormData.firstName }} {{ userFormData.lastName }}
+                                                            <br>
+                                                            Email Id:&nbsp; {{ userFormData.email }}
+                                                            <br>
+                                                            Phone Number:&nbsp; {{ userFormData.phone }}
+                                                            <br>
+                                                            Address:&nbsp; {{ userFormData.address }}
+                                                            <br>
+                                                            Date of Birth: &nbsp;{{ userFormData.dob | date: 'MM/dd/yyyy' }}
+                                                            <br>
+                                                            Gender: &nbsp;{{ userFormData.gender }}
+                                                            <br>
+                                                        </ng-container>
+                
+                                                    </mat-card-content>
+                                                </mat-card>
+                                            </div> 
+    
+    
+    
+                                            <div class="tab2button">
+    
+                                                <button mat-raised-button color="primary" (click)="moveToPreviousTab()">Back</button>&nbsp;
+    
+    
+                                                <button mat-raised-button color="primary" (click)="moveToNextTab2()">Next</button>
+    
+                                            </div>
+    
+                                        </div>
+
+                                    </div>
+
+                                   
+                                </form>
+                            </div>
+                            
+                        </mat-tab>
+               
+
+                
+
+
+                <mat-tab label="Additional Info">
+                    <div class="third-tab">
+                        <form action="">
+                            <br>
+                            <div class="row">
+                                <div class="col-md-6">
+
+                                    <label class="blue-label">Upload documents </label>
+
+                                    <br>
+                                    <div>
+                                        <label>
+                                            <input type="file" #doc>
+                                        </label>
+                                    </div>
+                                    <br><br>
+
+                                </div>
+                                <div class="col-md-6">
+
+                                    <div class="half-page-container">
+                                        <mat-card class="half-page-card">
+                                            <mat-card-content >
+                                                <b> Student Details </b>
+                                                <br>
+                                                <ng-container *ngIf="studentdetailsFormData">
+                                                    <!-- Name:&nbsp; {{ userFormData.firstName }} {{ userFormData.lastName }} -->
+                                                    
+                                                    <br>
+                                                    Courses: &nbsp;
+                                                    <ul>
+                                                        <li *ngFor="let course of studentdetailsFormData.selectedOptions">{{ course }}</li>
+                                                    </ul>
+        
+                                                </ng-container>
+        
+                                            </mat-card-content>
+                                        </mat-card>
+                                    </div> 
+
+
+
+                                    <div class="tab2button">
+
+                                        <button mat-raised-button color="primary" (click)="moveToPreviousTab()">Back</button>&nbsp;
+
+
+                                        <button mat-raised-button color="primary" (click)="submitform()">Submit</button>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </form>
+
+                    </div>
+
+                </mat-tab>
+
+                </mat-tab-group>
+
+            </div>
+
+        </div>
+    </div>
+    </div>
+</body>
+
+</html>
