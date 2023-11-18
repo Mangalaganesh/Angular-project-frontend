@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,ElementRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormControl, Validators, FormGroup, FormArray, FormBuilder } from '@angular/forms';
 import { StudentService } from '../service/student.service';
@@ -18,7 +18,7 @@ import {
 })
 export class AddstudentComponent {
 
-  options: string[] = ['ECE', 'EEE', 'MECH', 'CIVIL', 'CSE','EIE'];
+  options: string[] = ['ECE', 'EEE', 'MECH', 'CIVIL', 'CSE', 'EIE'];
   selectedOptions: string[] = [];
 
   myForm: FormGroup;
@@ -29,24 +29,29 @@ export class AddstudentComponent {
   studentdetailsFormData: any;
   horizontalPosition: MatSnackBarHorizontalPosition = 'center';
   verticalPosition: MatSnackBarVerticalPosition = 'top';
-  
-  constructor(private fb: FormBuilder,public so:StudentService, private _snackBar: MatSnackBar,public route:Router) {
+
+  // @ViewChild("doc") fileInput: ElementRef | null = null;
+  @ViewChild('doc') fileInput!: ElementRef;
+
+   fileToUpload: File | null = null;
+
+  constructor(private fb: FormBuilder, public so: StudentService, private _snackBar: MatSnackBar, public route: Router) {
 
     this.myForm = this.fb.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       address: ['', Validators.required],
-      
+
       dob: ['', Validators.required],
       gender: ['', Validators.required],
-     
+
       email: ['', Validators.required],
       phone: ['', Validators.required],
-      courses:[''],
+      courses: [''],
     });
 
     this.studentdetailsForm = this.fb.group({
-    
+
       selectedOptions: [[], Validators.required],
     });
   }
@@ -67,7 +72,7 @@ export class AddstudentComponent {
       gender: this.myForm.get('gender')?.value,
       email: this.myForm.get('email')?.value
     };
-    
+
     console.log("FORM 1: ", this.userFormData);
 
   }
@@ -81,25 +86,82 @@ export class AddstudentComponent {
   moveToNextTab2() {
     if (this.studentdetailsForm.valid) {
       this.studentdetailsFormData = this.studentdetailsForm.value;
-  
-   
+
+
       this.selectedTabIndex++;
     }
-     else {
-       this.studentdetailsForm.markAllAsTouched();
-   }
+    else {
+      this.studentdetailsForm.markAllAsTouched();
+    }
   }
 
-  submitform(){
-    console.log("tab1",this.myForm.value)
-    console.log("tab2",this.studentdetailsForm.value)
-    this.myForm.value.courses=this.studentdetailsForm.value.selectedOptions;
-    console.log("tab3",this.myForm.value)
+  onFileSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files.length > 0) {
+      this.fileToUpload = input.files[0];
+    }
+  }
 
-    this.so.addstudent(this.myForm.value).subscribe((data:any)=>{
-      console.log("return data",data);
+  submitform() {
+    console.log("FORM 1: ", this.myForm.value);
+    console.log("FORM 2: ", this.studentdetailsForm.value);
+    // this.myForm.value.courses = this.studentdetailsForm.value.selectedOptions;
+    // console.log("tab3", this.myForm.value)
+
+    const formdata = new FormData();
+
+    const dataToSend = {
+      userInfo: this.myForm.value,
+      academicInfo: this.studentdetailsForm.value,
+     
+    };
+
+     console.log("userInfo", dataToSend.userInfo);
+     console.log("academicInfo", dataToSend.academicInfo);
+     formdata.append('dataToSend', JSON.stringify(dataToSend)); // Add JSON data directly
+
+     if (this.fileToUpload) {      
+      formdata.append('file', this.fileToUpload, this.fileToUpload.name);
+      console.log(">>File>>>",formdata);
+    }
+
+    if (!this.fileToUpload) {
+      console.log('No file selected');
+      return;
+    }
+
+    // formdata.append('dataToSend', new Blob([JSON.stringify(dataToSend)], { type: 'application/json' }));
+    
+    console.log("DATA TO SEND :", dataToSend);
+
+    console.log("FORM DATA", formdata);
+
+    // this.so.addstudent(this.myForm.value).subscribe((data: any) => {
+      this.so.addstudent(formdata).subscribe(response => {
+
+        const statusCode = response.status;
+  
+        if (statusCode === 500) {
+          alert("Internal Server error");
+        } else {
+         // alert(response.body);
+  
+          // console.log('Student registered:', response);
+          console.log("return data", response);
       this.openSnackBar();
-    })
+          // Swal.fire({
+          //   title: 'Success!',
+          //   text: 'Your data has been registered successfully...',
+          //   icon: 'success',
+          // });
+        }
+       
+      });
+      
+    //   .subscribe((data: any) => {
+    //   console.log("return data", data);
+    //   this.openSnackBar();
+    // })
 
   }
 
@@ -109,7 +171,7 @@ export class AddstudentComponent {
     this.route.navigate(['/viewstudent'])
   }
 
+  
+
 
 }
-
-

@@ -7,10 +7,12 @@ html,
         #green {
             
             height: 100%;
-            text-align: center;
+            text-align: left-center;
             color: white;
-            padding: 15px;
+            padding: 20px;
             background: rgb(66, 66, 66);
+            
+            
             
         }
 
@@ -96,3 +98,7 @@ html,
         margin-top: -13px;
 
        }
+
+       h3 {
+        padding-left: 40%;
+    }

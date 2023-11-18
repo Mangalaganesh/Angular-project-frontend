@@ -19,12 +19,15 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatButtonModule} from '@angular/material/button';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule   } from '@angular/forms';
 import {MatCardModule} from '@angular/material/card';
 import { NgFor } from '@angular/common';
 import { ViewstudentComponent } from './viewstudent/viewstudent.component';
+import { UpdatestudentComponent } from './updatestudent/updatestudent.component';
+
 
 
 
@@ -36,7 +39,8 @@ import { ViewstudentComponent } from './viewstudent/viewstudent.component';
     AppComponent,
     SidemainComponent,
     AddstudentComponent,
-    ViewstudentComponent
+    ViewstudentComponent,
+    UpdatestudentComponent
   ],
   imports: [
     BrowserModule,
@@ -52,12 +56,15 @@ import { ViewstudentComponent } from './viewstudent/viewstudent.component';
     MatIconModule,
     MatDividerModule,
     MatButtonModule,
+    MatDialogModule,
     HttpClientModule,
     FormsModule,ReactiveFormsModule,
     MatCardModule,
     RouterModule,
     MatSnackBarModule,
     NgFor
+  
+ 
     
      
     

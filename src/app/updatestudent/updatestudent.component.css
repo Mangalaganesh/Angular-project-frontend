@@ -15,13 +15,10 @@ html,
             
             
         }
-        
 
         a {
             color: #dfe4e9;
             text-decoration: none;
-            padding-left: 10px;
-            align-items: center;
         }
 
         a:hover {
@@ -30,4 +27,13 @@ html,
            
         }
 
-      
+        .container h2 {
+            text-align: center;
+            /* Additional styles for the heading if needed */
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }

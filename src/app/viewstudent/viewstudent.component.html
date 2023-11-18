@@ -30,7 +30,7 @@
     <div class="container-fluid h-100">
         <div class="row h-100">
             <div class="col-2" id="green">
-                <h4>Menu</h4>
+                <h4>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Menu</h4>
                 <!-- Navigation links in sidebar-->
                 <a href="/form">
                     <i class="fa-solid fa-user-plus"></i> &nbsp;
@@ -43,6 +43,8 @@
                     <i class="fas fa-list"></i> &nbsp;
                     <span class="text">View Students</span>
                 </a>
+
+             
 
 
 
@@ -80,95 +82,60 @@
 </div> -->
                 </nav>
                 <div class="container">
-            <div class="row " >
-                <div class="col-xs-4 col-md-4 col-lg-4 matclass" *ngFor="let name of getstudent" >
-                    <mat-card class="row">
+                    <h3>List of Students </h3>
+
+                    <table class="table">
+                        <thead class="table-accent">
+                            <tr>
+                                <th>S.No</th>
+                                <th>Name</th>
+                                <th>Email ID</th>
+                                <th>Phone number</th>
+                                <th>Address</th>
+                                <th>courses</th>
+                                
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let student of getstudent; let i = index">
+                                <td>{{ i + 1 }}.</td> <!-- Add 1 to index to start from 1 -->
+                                <td>{{ student.firstName }} {{ student.lastName }}</td>
+                                <!-- Display first and last names -->
+                                <td>{{ student.email }}</td>
+                                <td>{{ student.phone }}</td> 
+                                <td>{{ student.address }}</td>
+                                <td >
+                                    <ng-container >
+                                   <ul>
+                                   <li *ngFor="let co of student.courses">{{ co.name }}</li>
+                                   </ul>
+                                   </ng-container>
+                                   </td>
+                                   
+                                
+                                
+                                <td>
+                                   
+
+                                     <a (click)="openEditDialog(student.student_id)">
+                                        <i class="fas fa-pen hand-cursor"></i> &nbsp;
+                                      
+                                    </a>
+                                   
+
+                                    &nbsp;
+                                   
+                                    <a (click)="deleteStudent(student)">
+                                        <i class="fas fa-trash hand-cursor" style="color: red;"></i> &nbsp;
+                                       
+                                    </a>
+                                   
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
             
-
-                        <div class="row">
-                            <label class="head1">
-Firstname
-                            </label>
-                            <label class="value">
-                                {{name.firstName}}
-                            </label>
-                        </div>
-
-
-                        <div class="row">
-                            <label class="head1">
-Last Name
-                            </label>
-                            <label class="value">
-                                {{name.lastName}}
-                            </label>
-                        </div>
-
-
-                        <div class="row">
-                            <label class="head1">
-Gender
-                            </label>
-                            <label class="value">
-                                {{name.gender}}
-                            </label>
-                        </div>
-
-                        <div class="row">
-                            <label class="head1">
-DOB
-                            </label>
-                            <label class="value">
-                                {{name.dob}}
-                            </label>
-                        </div>
-
-
-                        <div class="row">
-                            <label class="head1">
-Address
-                            </label>
-                            <label class="value">
-                                {{name.address}}
-                            </label>
-                        </div>
-
-
-
-                        <div class="row">
-                            <label class="head1">
-Phone Number
-                            </label>
-                            <label class="value">
-                                {{name.phone}}
-                            </label>
-                        </div>
-
-                        <div class="row">
-                            <label class="head1">
-Email
-                            </label>
-                            <label class="value">
-                                {{name.email
-                                }}
-                            </label>
-                        </div>
-
-
-
-                        <div class="row">
-                            <label class="head1">
-                                Courses
-                            </label>
-                            <label class="value" *ngFor="let co of name.courses">
-                                {{co}}
-                            </label>
-                        </div>
-                    </mat-card>
-
-                </div>
-
-            </div>
 
             </div>
 
